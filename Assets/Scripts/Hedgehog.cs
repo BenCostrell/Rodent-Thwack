@@ -28,7 +28,7 @@ public class Hedgehog : MonoBehaviour {
 
 	void Move(float x, float y){
 		Vector2 inputVector = new Vector2 (x, y);
-		rb.velocity = inputVector * speed;
+		rb.AddForce(inputVector * speed);
 	}
 
 	void FaceProperDirection(float x){
