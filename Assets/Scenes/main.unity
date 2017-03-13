@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 551642621}
   - component: {fileID: 551642620}
   - component: {fileID: 551642619}
+  - component: {fileID: 551642623}
   m_Layer: 0
   m_Name: Rooster
   m_TagString: Untagged
@@ -121,7 +122,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 8
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -140,7 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8410f700a5774d41bc4394e0b7ab754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 120
+  accel: 120
+  maxSpeed: 15
 --- !u!212 &551642621
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ffcc08a0e6191154cbdec7d1a7b6a4cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -189,6 +191,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &551642623
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551642618}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e32003d3e46c3e4cab6e07a60db73a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1256810975
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +411,7 @@ GameObject:
   - component: {fileID: 1838668317}
   - component: {fileID: 1838668316}
   - component: {fileID: 1838668315}
+  - component: {fileID: 1838668319}
   m_Layer: 0
   m_Name: Hedgehog
   m_TagString: Untagged
@@ -411,7 +431,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 8
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -430,7 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e884d085bcd70e48b6139764702862a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  accel: 150
+  maxSpeed: 20
 --- !u!212 &1838668317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -461,7 +482,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f0c82bdc811d53843bd97410f8cb465d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -479,6 +500,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1838668319
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838668314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e00f9291938e51498246198aa2fbf0a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1853591591
 GameObject:
   m_ObjectHideFlags: 0

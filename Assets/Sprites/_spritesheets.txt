@@ -1,0 +1,2 @@
+hedgehogSS.png,500,500,3
+roosterSS.png,500,500,2
