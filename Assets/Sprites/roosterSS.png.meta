@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: 26b3b4c3a30ba41499729db386d12382
-timeCreated: 1489430195
+timeCreated: 1489435799
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: roosterSS_0
     21300002: roosterSS_1
+    21300004: roosterSS_2
+    21300006: roosterSS_3
+    21300008: roosterSS_4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -76,7 +79,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 500
         width: 500
         height: 500
       alignment: 0
@@ -86,6 +89,45 @@ TextureImporter:
       tessellationDetail: 0
     - serializedVersion: 2
       name: roosterSS_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: roosterSS_2
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: roosterSS_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: roosterSS_4
       rect:
         serializedVersion: 2
         x: 500

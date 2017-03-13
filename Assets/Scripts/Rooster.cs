@@ -9,17 +9,21 @@ public class Rooster : MonoBehaviour {
 	private Animator anim;
 	public float accel;
 	public float maxSpeed;
+	public bool actionable;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
+		actionable = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		ProcessInput ();
+		if (actionable) {
+			ProcessInput ();
+		}
 	}
 
 	void ProcessInput(){
@@ -27,6 +31,9 @@ public class Rooster : MonoBehaviour {
 		float y = Input.GetAxis ("Vertical_Rooster");
 		Move (x, y);
 		FaceProperDirection (x);
+		if (Input.GetButtonDown("Thwack")){
+			Thwack ();
+		}
 	}
 
 	void Move(float x, float y){
@@ -52,5 +59,14 @@ public class Rooster : MonoBehaviour {
 				sr.flipX = false;
 			}
 		}
+	}
+
+	void Thwack(){
+		anim.SetTrigger ("thwack");
+		actionable = false;
+	}
+
+	void EndAnimation(){
+		actionable = true;
 	}
 }
