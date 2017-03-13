@@ -9,12 +9,17 @@ public class Hedgehog : MonoBehaviour {
 	private Animator anim;
 	public float accel;
 	public float maxSpeed;
+	private bool holdingEgg;
+	private GameObject eggBeingHeld;
+	private GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		sr = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
+		holdingEgg = false;
+		gameManager = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<GameManager> ();
 	}
 
 	// Update is called once per frame
@@ -52,5 +57,28 @@ public class Hedgehog : MonoBehaviour {
 				sr.flipX = false;
 			}
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		GameObject go = col.gameObject;
+		if (go.tag == "Egg" && !holdingEgg) {
+			PickUpEgg (go);
+		}
+		if (go.tag == "Hole" && holdingEgg) {
+			DepositEgg ();
+		}
+	}
+
+	void DepositEgg(){
+		Destroy (eggBeingHeld);
+		gameManager.EggPilfered ();
+		holdingEgg = false;
+	}
+
+	void PickUpEgg(GameObject egg){
+		egg.transform.parent = transform;
+		egg.transform.localPosition = new Vector2 (0, 1.5f);
+		holdingEgg = true;
+		eggBeingHeld = egg;
 	}
 }
