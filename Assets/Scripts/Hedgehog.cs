@@ -72,11 +72,15 @@ public class Hedgehog : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D col){
+	void OnTriggerStay2D(Collider2D col){
 		GameObject go = col.gameObject;
-		if (go.tag == "Egg" && !holdingEgg) {
+		if (go.tag == "Egg" && !holdingEgg && !stunned) {
 			PickUpEgg (go);
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		GameObject go = col.gameObject;
 		if (go.tag == "Hole") {
 			if (stunned) {
 				Die ();
@@ -107,5 +111,10 @@ public class Hedgehog : MonoBehaviour {
 		rb.velocity = knockback;
 		stunned = true;
 		stunTime = stun;
+		if (holdingEgg) {
+			eggBeingHeld.transform.parent = null;
+			eggBeingHeld = null;
+			holdingEgg = false;
+		}
 	}
 }
