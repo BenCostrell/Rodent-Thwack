@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public int eggsPilfered;
-	public GameObject eggsPilferedUI;
+	public int eggCount;
+	public GameObject winText;
 
 	// Use this for initialization
 	void Start () {
-		eggsPilfered = 0;
+		eggCount = 5;
+		winText.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -22,11 +23,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void EggPilfered(){
-		eggsPilfered += 1;
-		UpdateEggsPilferedUI ();
+		eggCount -= 1;
+		if (eggCount == 0) {
+			GameWin ("HEDGEHOG");
+		}
 	}
 
-	void UpdateEggsPilferedUI(){
-		eggsPilferedUI.GetComponent<Text> ().text = "EGGS PILFERED: " + eggsPilfered;
+	public void GameWin(string winner){
+		winText.GetComponent<Text> ().text = winner + " WINS";
+		winText.SetActive (true);
 	}
 }

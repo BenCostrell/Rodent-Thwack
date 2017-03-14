@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 551642623}
   - component: {fileID: 551642625}
   - component: {fileID: 551642624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,6 +325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accel: 120
   maxSpeed: 15
+  actionable: 0
+  dashVelocity: 100
+  inputBuffer: 8
 --- !u!212 &551642621
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -356,7 +359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ffcc08a0e6191154cbdec7d1a7b6a4cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26b3b4c3a30ba41499729db386d12382, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -369,7 +372,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1898129358}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -602,9 +606,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 17.5, y: 0}
+  m_Offset: {x: 22, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 10, y: 20}
 --- !u!61 &1219194329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -616,9 +620,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -17.5, y: 0}
+  m_Offset: {x: -22, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 10, y: 20}
 --- !u!61 &1219194330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -630,9 +634,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -9.5}
+  m_Offset: {x: 0, y: -14.5}
   serializedVersion: 2
-  m_Size: {x: 40, y: 1}
+  m_Size: {x: 40, y: 10}
 --- !u!61 &1219194331
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -644,9 +648,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 10}
+  m_Offset: {x: 0, y: 14.5}
   serializedVersion: 2
-  m_Size: {x: 40, y: 1}
+  m_Size: {x: 40, y: 10}
 --- !u!4 &1219194332
 Transform:
   m_ObjectHideFlags: 0
@@ -687,8 +691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbe989346d765a418026d86b640b889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggsPilfered: 0
-  eggsPilferedUI: {fileID: 2015662161}
+  eggCount: 0
+  winText: {fileID: 2015662161}
 --- !u!4 &1238388917
 Transform:
   m_ObjectHideFlags: 0
@@ -1005,11 +1009,11 @@ GameObject:
   - component: {fileID: 1838668316}
   - component: {fileID: 1838668315}
   - component: {fileID: 1838668319}
-  - component: {fileID: 1838668320}
   - component: {fileID: 1838668321}
-  m_Layer: 0
+  - component: {fileID: 1838668320}
+  m_Layer: 9
   m_Name: Hedgehog
-  m_TagString: Untagged
+  m_TagString: Hedgehog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1112,8 +1116,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!58 &1838668320
-CircleCollider2D:
+--- !u!61 &1838668320
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1121,11 +1125,11 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: -0.10427747, y: -0.545846}
   serializedVersion: 2
-  m_Radius: 2.2
+  m_Size: {x: 2.8846555, y: 1.9419316}
 --- !u!58 &1838668321
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1140,6 +1144,63 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!1 &1898129357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1898129358}
+  - component: {fileID: 1898129360}
+  - component: {fileID: 1898129359}
+  m_Layer: 0
+  m_Name: ThwackHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898129358
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1898129357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 551642622}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898129359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1898129357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c749a19cab9563e449479bf1d53780d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thwackPower: 50
+  stun: 0.5
+--- !u!61 &1898129360
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1898129357}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 1.5, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1}
 --- !u!1 &2015662161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,12 +1212,12 @@ GameObject:
   - component: {fileID: 2015662164}
   - component: {fileID: 2015662163}
   m_Layer: 5
-  m_Name: EggsPilferedUI
+  m_Name: WinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2015662162
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1172,8 +1233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 0, y: -90}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2015662163
 MonoBehaviour:
@@ -1196,18 +1257,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'EGGS PILFERED: 0'
+  m_Text: HEDGEHOG WINS
 --- !u!222 &2015662164
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class Hedgehog : MonoBehaviour {
 	private bool holdingEgg;
 	private GameObject eggBeingHeld;
 	private GameManager gameManager;
+	private bool stunned;
+	private float stunTime;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,10 @@ public class Hedgehog : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		ProcessInput ();
+		ProcessHitstun ();
+		if (!stunned) {
+			ProcessInput ();
+		}
 	}
 
 	void ProcessInput(){
@@ -32,6 +37,14 @@ public class Hedgehog : MonoBehaviour {
 		float y = Input.GetAxis ("Vertical_Hedgehog");
 		Move (x, y);
 		FaceProperDirection (x);
+	}
+
+	void ProcessHitstun(){
+		if (stunTime > 0) {
+			stunTime -= Time.deltaTime;
+		} else {
+			stunned = false;
+		}
 	}
 
 	void Move(float x, float y){
@@ -64,9 +77,17 @@ public class Hedgehog : MonoBehaviour {
 		if (go.tag == "Egg" && !holdingEgg) {
 			PickUpEgg (go);
 		}
-		if (go.tag == "Hole" && holdingEgg) {
-			DepositEgg ();
+		if (go.tag == "Hole") {
+			if (stunned) {
+				Die ();
+			} else if (holdingEgg) {
+				DepositEgg ();
+			}
 		}
+	}
+
+	void Die(){
+		gameManager.GameWin ("ROOSTER");
 	}
 
 	void DepositEgg(){
@@ -80,5 +101,11 @@ public class Hedgehog : MonoBehaviour {
 		egg.transform.localPosition = new Vector2 (0, 1.5f);
 		holdingEgg = true;
 		eggBeingHeld = egg;
+	}
+
+	public void GetThwacked(Vector3 knockback, float stun){
+		rb.velocity = knockback;
+		stunned = true;
+		stunTime = stun;
 	}
 }
